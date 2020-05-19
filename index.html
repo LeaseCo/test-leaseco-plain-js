@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LeaseCo store</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://localhost:3002/leaseco.js" data-mid="1440fe84-046a-4ef0-8319-cb27b2022828" data-promo-template="Buy for $%%%/MO" data-promo-generic="Buy now" async=""> </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            padding-top: 3rem;
+        }
+        .product {
+            width: 200px;
+            position: relative;
+            height: 200px;
+            text-align: center;
+            border: 1px solid #333;
+            padding: 1rem;
+        }
+        .image {
+            width: 100%;
+        }
+        .checkout {
+            padding-top: 2rem;
+            text-align: center;
+        }
+        .checkout button {
+            background: #5f5fff;
+            color: #fff;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #5a5af3;
+            border-radius: 2%;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product">
+            <div>
+                <span
+                    class="leaseco-promo"
+                    data-item-price="64900"
+                    data-item-id="seno-1"
+                    data-item-sku="KSA9G"
+                    data-item-quantity="1"
+                    >
+                </span>
+            </div>
+            <img class="image" src="https://cdn-images.article.com/products/SKU379A/2890x1500/image14715.jpg?fit=max&w=2600&q=60&fm=webp"/>
+            <p>SENO</p>
+            <div>
+                <span class="price">$649</span>
+            </div>
+        </div>
+        <div class="checkout">
+            <button id="leaseco-checkout">Checkout with leaseco</button>
+        </div>
+    </div>
+    <script>
+        function leasecoCallback() {
+
+        }
+        $(document).ready(function() {
+            document.getElementById("leaseco-checkout").addEventListener("click", function(){
+                const order = {
+                    gatewayCustomer: {
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        phone: "",
+                    },
+                    order: {
+                        orderId: 1,
+                        orderAmount: 649,
+                        shippingAmount: 0,
+                        taxRate: 0.2,
+                        orderItems: [
+                            {unit_price: 649}
+                        ],
+                        discountCodes: "",
+                    },
+                    billingAddress: {
+                        firstName: "",
+                        lastName: "",
+                        streetAddress: "",
+                        extendedAddress: "",
+                        postalCode: "",
+                        locality: "",
+                        region: "",
+                    },
+                    shippingAddress: "",
+                }
+                leaseco.startCheckout(order);
+            })
+        })
+    </script>
+</body>
+</html>
